@@ -1,14 +1,14 @@
-# sic - simple irc client
+# bic - simple irc client
 
 include config.mk
 
-SRC = sic.c
+SRC = bic.c
 OBJ = ${SRC:.c=.o}
 
-all: options sic
+all: options bic
 
 options:
-	@echo sic build options:
+	@echo bic build options:
 	@echo "CFLAGS   = ${CFLAGS}"
 	@echo "LDFLAGS  = ${LDFLAGS}"
 	@echo "CC       = ${CC}"
@@ -23,36 +23,36 @@ config.h:
 	@echo creating $@ from config.def.h
 	@cp config.def.h $@
 
-sic: ${OBJ}
+bic: ${OBJ}
 	@echo CC -o $@
 	@${CC} -o $@ ${OBJ} ${LDFLAGS}
 
 clean:
 	@echo cleaning
-	@rm -f sic ${OBJ} sic-${VERSION}.tar.gz
+	@rm -f bic ${OBJ} bic-${VERSION}.tar.gz
 
 dist: clean
 	@echo creating dist tarball
-	@mkdir -p sic-${VERSION}
-	@cp -R LICENSE Makefile README arg.h config.def.h config.mk sic.1 sic.c util.c strlcpy.c sic-${VERSION}
-	@tar -cf sic-${VERSION}.tar sic-${VERSION}
-	@gzip sic-${VERSION}.tar
-	@rm -rf sic-${VERSION}
+	@mkdir -p bic-${VERSION}
+	@cp -R LICENSE Makefile README arg.h config.def.h config.mk bic.1 bic.c util.c strlcpy.c bic-${VERSION}
+	@tar -cf bic-${VERSION}.tar bic-${VERSION}
+	@gzip bic-${VERSION}.tar
+	@rm -rf bic-${VERSION}
 
 install: all
 	@echo installing executable file to ${DESTDIR}${PREFIX}/bin
 	@mkdir -p ${DESTDIR}${PREFIX}/bin
-	@cp -f sic ${DESTDIR}${PREFIX}/bin
-	@chmod 755 ${DESTDIR}${PREFIX}/bin/sic
+	@cp -f bic ${DESTDIR}${PREFIX}/bin
+	@chmod 755 ${DESTDIR}${PREFIX}/bin/bic
 	@echo installing manual page to ${DESTDIR}${MANPREFIX}/man1
 	@mkdir -p ${DESTDIR}${MANPREFIX}/man1
-	@sed "s/VERSION/${VERSION}/g" < sic.1 > ${DESTDIR}${MANPREFIX}/man1/sic.1
-	@chmod 644 ${DESTDIR}${MANPREFIX}/man1/sic.1
+	@sed "s/VERSION/${VERSION}/g" < bic.1 > ${DESTDIR}${MANPREFIX}/man1/bic.1
+	@chmod 644 ${DESTDIR}${MANPREFIX}/man1/bic.1
 
 uninstall:
 	@echo removing executable file from ${DESTDIR}${PREFIX}/bin
-	@rm -f ${DESTDIR}${PREFIX}/bin/sic
+	@rm -f ${DESTDIR}${PREFIX}/bin/bic
 	@echo removing manual page from ${DESTDIR}${MANPREFIX}/man1
-	@rm -f ${DESTDIR}${MANPREFIX}/man1/sic.1
+	@rm -f ${DESTDIR}${MANPREFIX}/man1/bic.1
 
 .PHONY: all options clean dist install uninstall
