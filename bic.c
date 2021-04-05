@@ -60,7 +60,7 @@ pout(char *channel, char *fmt, ...) {
         switch (c) {
         case 0x02: 
             {
-                if (bold = !bold) {
+                if ((bold = !bold)) {
                     fprintf(stdout, "\x1b[1m");
                 } else {
                     fprintf(stdout, "\x1b[0m");
@@ -69,7 +69,7 @@ pout(char *channel, char *fmt, ...) {
             }
         case 0x1d: 
             {
-                if (italic = !italic) {
+                if ((italic = !italic)) {
                     fprintf(stdout, "\x1b[3m");
                 } else {
                     fprintf(stdout, "\x1b[0m");
@@ -78,7 +78,7 @@ pout(char *channel, char *fmt, ...) {
             }
         case 0x1f: 
             {
-                if (underline = !underline) {
+                if ((underline = !underline)) {
                     fprintf(stdout, "\x1b[4m");
                 } else {
                     fprintf(stdout, "\x1b[0m");
@@ -87,7 +87,7 @@ pout(char *channel, char *fmt, ...) {
             }
         case 0x1e: 
             {
-                if (strikethrough = !strikethrough) {
+                if ((strikethrough = !strikethrough)) {
                     fprintf(stdout, "\x1b[9m");
                 } else {
                     fprintf(stdout, "\x1b[0m");
